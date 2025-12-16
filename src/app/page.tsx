@@ -11,9 +11,9 @@ import PortfolioSideRail from "../components/PortfolioSideRail";
 
 // Komponen efek idle (declare at top-level to avoid creating component during render)
 const IdleEffect = () => (
-  <div className="pointer-events-none absolute inset-0 z-10">
-    <div className="absolute left-1/2 top-1/3 w-48 h-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white/6 via-indigo-300/12 to-transparent blur-2xl animate-float-glow" />
-    <div className="absolute right-1/4 bottom-1/4 w-20 h-20 rounded-full bg-gradient-to-tr from-indigo-300/18 to-white/0 blur-xl animate-float-particle" />
+  <div className="pointer-events-none absolute inset-0 z-0">
+    <div className="absolute left-1/2 top-1/3 w-48 h-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-white/4 via-indigo-300/8 to-transparent blur-2xl animate-float-glow" />
+    <div className="absolute right-1/4 bottom-1/4 w-20 h-20 rounded-full bg-gradient-to-tr from-indigo-300/12 to-white/0 blur-xl animate-float-particle" />
   </div>
 );
 
@@ -150,10 +150,10 @@ export default function LandingPage() {
       >
         <div
           id="home-bg"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-zinc-900 to-zinc-800 bg-fixed parallax-bg"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-zinc-900 to-zinc-800 bg-local md:bg-fixed parallax-bg"
           style={{ backgroundSize: "cover", backgroundPosition: "center" }}
         />
-        {isIdle && <IdleEffect />}
+        {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
             <motion.div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-24" initial="hidden" animate="visible" variants={contentVariants}>
               <motion.div custom={0} variants={contentVariants} className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
@@ -187,10 +187,10 @@ export default function LandingPage() {
       <section id="about" className="min-h-[70vh] flex items-center px-6 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden section-hover-effect">
         <div
           id="about-bg"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-local md:bg-fixed parallax-bg"
           style={{ backgroundSize: "cover", backgroundPosition: "center" }}
         />
-        {isIdle && <IdleEffect />}
+        {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
           <motion.div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-24" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <motion.div custom={1} variants={contentVariants} className="text-left">
@@ -217,17 +217,16 @@ export default function LandingPage() {
       <section id="experience" className="min-h-screen flex flex-col items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden section-hover-effect">
         <div
           id="experience-bg"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-local md:bg-fixed parallax-bg"
           style={{ backgroundSize: "cover", backgroundPosition: "center" }}
         />
         <span className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-white/0 via-white/40 to-white/0 rounded-full" />
-        {isIdle && <IdleEffect />}
+        {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
           <motion.main
             className="flex flex-col items-center justify-center text-center py-24 w-full"
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.6 }}
+            animate="visible"
             variants={contentVariants}
           >
             <motion.h1 custom={1} variants={contentVariants} className="text-4xl font-bold mb-8 text-white tracking-tight">Education & Experience</motion.h1>
@@ -248,7 +247,7 @@ export default function LandingPage() {
               </AnimatedButton>
             </motion.div>
             {selectedTab === 'education' && (
-              <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={contentVariants}>
+              <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
                 <div className="absolute left-1/2 top-0 h-full w-1 bg-zinc-700 rounded-full -translate-x-1/2" />
                 <ol className="relative z-10">
                   {/* Enhanced Education entries (school cards with logo + details) */}
@@ -348,7 +347,7 @@ export default function LandingPage() {
               </motion.div>
             )}
             {selectedTab === 'work' && (
-              <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={contentVariants}>
+              <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
                 <div className="absolute left-1/2 top-0 h-full w-1 bg-zinc-700 rounded-full -translate-x-1/2" />
                 <ol className="relative z-10">
                   {/* Enhanced Work/Intern Experience (logos, role badges, hover details) */}
@@ -492,7 +491,7 @@ export default function LandingPage() {
       {/* Contact Section (premium icon-only layout) */}
       <section id="contact" className="min-h-screen flex items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden">
         <div id="contact-bg" className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg" style={{ backgroundSize: "cover", backgroundPosition: "center" }} />
-        {isIdle && <IdleEffect />}
+        {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
           <motion.div className="w-full max-w-3xl mx-auto py-28" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <div className="glass-card p-8 flex flex-col md:flex-row items-center gap-6 md:gap-12">

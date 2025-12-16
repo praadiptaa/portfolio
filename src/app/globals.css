@@ -239,6 +239,13 @@ body {
 .exp-detail { max-height: 0; overflow: hidden; transition: max-height 280ms ease, opacity 220ms ease; opacity: 0; }
 .exp-card:hover .exp-detail { max-height: 240px; opacity: 1; }
 
+/* Make experience details visible on small/touch devices (no hover) */
+@media (max-width: 768px) {
+  .exp-detail { max-height: 1000px !important; opacity: 1 !important; }
+  .exp-card:hover .exp-detail { max-height: 1000px; opacity: 1; }
+  .exp-card { padding: 0.75rem; }
+}
+
 /* Role cards for 'What am I doing?' section */
 .role-card {
   padding: 1.25rem;
