@@ -1,0 +1,5 @@
+This is a placeholder resume file.
+
+Replace this file with your actual CV/Resume named 'resume.pdf' in the `public/` folder.
+
+The Navbar "Resume" button links to `/resume.pdf` and will download this file when clicked.

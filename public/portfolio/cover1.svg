@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#7A64FF" />
+      <stop offset="1" stop-color="#BBAEFF" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#0f1724" />
+  <rect x="48" y="48" width="1104" height="624" rx="14" fill="url(#g1)" opacity="0.08" />
+  <g fill="#fff" font-family="Inter, Arial, sans-serif">
+    <text x="84" y="140" font-size="40" font-weight="700">Landing — Product Showcase</text>
+    <text x="84" y="190" fill="#cbd5e1" font-size="18">A minimal landing with performant animations and accessible markup.</text>
+  </g>
+  <circle cx="980" cy="160" r="68" fill="#ffffff11" />
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#071022" />
+  <rect x="40" y="40" width="1120" height="640" rx="12" fill="#ffffff06" />
+  <text x="72" y="140" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700">E-commerce — Checkout Flow</text>
+  <text x="72" y="190" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="18">Optimized checkout with progressive enhancement and A/B tested flows.</text>
+</svg>
