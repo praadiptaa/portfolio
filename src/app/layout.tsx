@@ -37,6 +37,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <a href="#home" className="skip-link sr-only focus:not-sr-only focus:translate-y-0 focus:top-4">Skip to content</a>
         <MotionProvider>
