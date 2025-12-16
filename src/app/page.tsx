@@ -28,7 +28,7 @@ const contentVariants = {
     transition: {
       delay: i * 0.06,
       duration: 0.45,
-      ease: [0.32, 0, 0.2, 1],
+      ease: "easeOut",
     },
   }),
 };
