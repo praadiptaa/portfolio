@@ -107,7 +107,11 @@ export default function PortfolioSideRail({ projects }: { projects?: Project[] }
           {items.map((it, i) => (
             <button key={it.id} onClick={() => setIndex(i)} className={`thumb-btn ${i === index ? 'active' : ''}`} aria-label={`Open ${it.title}`} aria-pressed={i === index} aria-current={i === index ? 'true' : undefined}>
                 <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06, duration: 0.36 }} whileHover={motionEnabled ? { scale: 1.03 } : undefined} className="w-40 h-24 relative rounded overflow-hidden">
-                  <Image src={it.image} alt={it.title} fill className="object-cover" sizes="160px" />
+                  {it.image ? (
+                    <Image src={it.image} alt={it.title} fill className="object-cover" sizes="160px" />
+                  ) : (
+                    <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-white/60">No image</div>
+                  )}
                 </motion.div>
             </button>
           ))}

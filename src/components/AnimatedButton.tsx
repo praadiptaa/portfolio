@@ -1,8 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import React from "react";
 
-export function AnimatedButton({ children, className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+export function AnimatedButton({ children, className = "", ...props }: HTMLMotionProps<"button">) {
   return (
     <motion.button
       whileTap={{ scale: 0.95, boxShadow: "0 0 0 2px #fff, 0 0 16px #fff2" }}
@@ -16,7 +16,7 @@ export function AnimatedButton({ children, className = "", ...props }: React.But
   );
 }
 
-export function AnimatedLink({ children, className = "", ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+export function AnimatedLink({ children, className = "", ...props }: HTMLMotionProps<"a">) {
   return (
     <motion.a
       whileTap={{ scale: 0.95, color: "#fff", backgroundColor: "#222" }}

@@ -18,7 +18,7 @@ const IdleEffect = () => (
 );
 
 // Minimalist content variants (subtle)
-const contentVariants = {
+const contentVariants: any = {
   hidden: { opacity: 0, y: 8, scale: 0.998, rotate: 0 },
   visible: (i = 1) => ({
     opacity: 1,
