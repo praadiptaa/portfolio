@@ -252,8 +252,8 @@ export default function LandingPage() {
                 <div className="absolute left-1/2 top-0 h-full w-1 bg-zinc-700 rounded-full -translate-x-1/2" />
                 <ol className="relative z-10">
                   {/* Enhanced Education entries (school cards with logo + details) */}
-                  <motion.li className="mb-16 flex justify-between items-center w-full" custom={1} variants={contentVariants}>
-                    <div className="w-1/2 pr-8 text-right">
+                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={1} variants={contentVariants}>
+                    <div className="md:w-1/2 w-full md:pr-8 pr-0 md:text-right text-left">
                       <div className="exp-card glass-card p-4 text-right">
                         <div className="flex items-center justify-end gap-3">
                           <div className="company-logo">
@@ -267,23 +267,23 @@ export default function LandingPage() {
                         <div className="exp-detail text-gray-400 text-sm mt-3">Information Technology (D3 Program). Focused on software development, web technologies, system design, and practical project-based learning.</div>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center my-4 md:my-0">
                       <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
                         <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
                       </span>
                       <span className="h-16 w-1 bg-zinc-700" />
                     </div>
-                    <div className="w-1/2" />
+                    <div className="hidden md:block md:w-1/2" />
                   </motion.li>
-                  <motion.li className="mb-16 flex justify-between items-center w-full" custom={2} variants={contentVariants}>
-                    <div className="w-1/2" />
-                    <div className="flex flex-col items-center">
+                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={2} variants={contentVariants}>
+                    <div className="hidden md:block md:w-1/2" />
+                    <div className="flex flex-col items-center my-4 md:my-0">
                       <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
                         <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
                       </span>
                       <span className="h-16 w-1 bg-zinc-700" />
                     </div>
-                    <div className="w-1/2 pl-8 text-left">
+                    <div className="md:w-1/2 w-full md:pl-8 pl-0 text-left">
                       <div className="exp-card glass-card p-4">
                         <div className="flex items-center gap-3">
                           <div className="company-logo">
@@ -298,8 +298,8 @@ export default function LandingPage() {
                       </div>
                     </div>
                   </motion.li>
-                  <motion.li className="mb-16 flex justify-between items-center w-full" custom={3} variants={contentVariants}>
-                    <div className="w-1/2 pr-8 text-right">
+                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={3} variants={contentVariants}>
+                    <div className="md:w-1/2 w-full md:pr-8 pr-0 md:text-right text-left">
                       <div className="exp-card glass-card p-4 text-right">
                         <div className="flex items-center justify-end gap-3">
                           <div className="company-logo">
@@ -313,23 +313,23 @@ export default function LandingPage() {
                         <div className="exp-detail text-gray-400 text-sm mt-3">Completed general junior high school education with a standard academic curriculum.</div>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center my-4 md:my-0">
                       <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
                         <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
                       </span>
                       <span className="h-16 w-1 bg-zinc-700" />
                     </div>
-                    <div className="w-1/2" />
+                    <div className="hidden md:block md:w-1/2" />
                   </motion.li>
-                  <motion.li className="mb-16 flex justify-between items-center w-full" custom={4} variants={contentVariants}>
-                    <div className="w-1/2" />
-                    <div className="flex flex-col items-center">
+                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={4} variants={contentVariants}>
+                    <div className="hidden md:block md:w-1/2" />
+                    <div className="flex flex-col items-center my-4 md:my-0">
                       <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
                         <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
                       </span>
                       <span className="h-16 w-1 bg-zinc-700" />
                     </div>
-                    <div className="w-1/2 pl-8 text-left">
+                    <div className="md:w-1/2 w-full md:pl-8 pl-0 text-left">
                       <div className="exp-card glass-card p-4">
                         <div className="flex items-center gap-3">
                           <div className="company-logo">
@@ -352,8 +352,8 @@ export default function LandingPage() {
                 <div className="absolute left-1/2 top-0 h-full w-1 bg-zinc-700 rounded-full -translate-x-1/2" />
                 <ol className="relative z-10">
                   {/* Enhanced Work/Intern Experience (logos, role badges, hover details) */}
-                  <motion.li className="mb-16 flex justify-between items-center w-full" custom={1} variants={contentVariants}>
-                    <div className="w-1/2 pr-8 text-right">
+                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={1} variants={contentVariants}>
+                    <div className="md:w-1/2 w-full md:pr-8 pr-0 md:text-right text-left">
                       <div className="exp-card glass-card p-4 text-right">
                         <div className="flex items-center justify-end gap-3">
                           <div className="company-logo">
@@ -367,23 +367,23 @@ export default function LandingPage() {
                         <div className="exp-detail text-gray-400 text-sm mt-3">Developed a stock opname application using FlutterFlow, Supabase, and SQLite, built landing pages with React.js, and enhanced the company website through custom WordPress themes and PHP plugins within the ITSM System Management team.</div>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center my-4 md:my-0">
                       <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
                         <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
                       </span>
                       <span className="h-16 w-1 bg-zinc-700" />
                     </div>
-                    <div className="w-1/2" />
+                    <div className="hidden md:block md:w-1/2" />
                   </motion.li>
-                  <motion.li className="mb-16 flex justify-between items-center w-full" custom={2} variants={contentVariants}>
-                    <div className="w-1/2" />
-                    <div className="flex flex-col items-center">
+                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={2} variants={contentVariants}>
+                    <div className="hidden md:block md:w-1/2" />
+                    <div className="flex flex-col items-center my-4 md:my-0">
                       <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
                         <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
                       </span>
                       <span className="h-16 w-1 bg-zinc-700" />
                     </div>
-                    <div className="w-1/2 pl-8 text-left">
+                    <div className="md:w-1/2 w-full md:pl-8 pl-0 text-left">
                       <div className="exp-card glass-card p-4">
                         <div className="flex items-center gap-3">
                           <div className="company-logo">

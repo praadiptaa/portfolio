@@ -63,13 +63,13 @@ export default function PortfolioSideRail({ projects }: { projects?: Project[] }
     <div className="side-rail-portfolio w-full flex flex-col gap-6 items-stretch">
       {/* Image area */}
       <div className="relative w-full">
-        <div className="h-[52vh] sm:h-[60vh] lg:h-[68vh] overflow-hidden rounded-lg">
+        <div className="h-auto sm:h-[52vh] lg:h-[68vh] overflow-hidden rounded-lg">
           <AnimatePresence initial={false} mode="wait">
             <motion.div key={items[index].id} variants={variants} initial="enter" animate="center" exit="exit" transition={motionEnabled ? { duration: 0.5 } : { duration: 0 }} className="w-full h-full relative">
-                  {items[index].image ? (
-                    <div className="w-full h-full relative">
-                      <Image src={items[index].image} alt={items[index].title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" priority={true} />
-                    </div>
+                      {items[index].image ? (
+                        <div className="w-full h-full relative">
+                          <Image src={items[index].image} alt={items[index].title} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw" priority={true} />
+                        </div>
                   ) : (
                     <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-white/60">No image</div>
                   )}
@@ -80,12 +80,12 @@ export default function PortfolioSideRail({ projects }: { projects?: Project[] }
       </div>
 
       {/* Info bar placed under the image, horizontal layout */}
-      <div className="info-bar glass-card mt-0 p-4 flex items-center justify-between gap-4">
+      <div className="info-bar glass-card mt-0 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="info-left min-w-0">
           <h3 className="text-lg font-bold text-white truncate">{items[index].title}</h3>
           <div className="text-xs text-gray-400">{items[index].role} • {items[index].year}</div>
         </div>
-        <div className="info-center text-gray-300 hidden md:block flex-1 px-4">
+        <div className="info-center text-gray-300 block sm:block md:block flex-1 px-4">
           <p className="truncate">{items[index].excerpt}</p>
         </div>
         <div className="info-right flex-shrink-0">
@@ -108,7 +108,7 @@ export default function PortfolioSideRail({ projects }: { projects?: Project[] }
             <button key={it.id} onClick={() => setIndex(i)} className={`thumb-btn ${i === index ? 'active' : ''}`} aria-label={`Open ${it.title}`} aria-pressed={i === index} aria-current={i === index ? 'true' : undefined}>
                 <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06, duration: 0.36 }} whileHover={motionEnabled ? { scale: 1.03 } : undefined} className="w-40 h-24 relative rounded overflow-hidden">
                   {it.image ? (
-                    <Image src={it.image} alt={it.title} fill className="object-cover" sizes="160px" />
+                    <Image src={it.image} alt={it.title} fill className="object-cover" sizes="(max-width: 640px) 120px, 160px" />
                   ) : (
                     <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-white/60">No image</div>
                   )}

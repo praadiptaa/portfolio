@@ -38,8 +38,8 @@ export default function PortfolioCarousel({ slides }: { slides?: Slide[] }) {
     <div className="carousel-container relative w-full">
       <div className="carousel-viewport overflow-hidden relative rounded-lg">
         <AnimatePresence initial={false} mode="wait">
-          <motion.div key={items[index].id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.6 }} className="carousel-slide relative w-full h-[52vh] sm:h-[60vh] lg:h-[68vh]">
-            <div className="carousel-split flex w-full h-full">
+          <motion.div key={items[index].id} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.6 }} className="carousel-slide relative w-full h-auto sm:h-[52vh] lg:h-[68vh]">
+              <div className="carousel-split flex flex-col lg:flex-row w-full h-full">
               <div className="carousel-split-left w-full lg:w-5/12 p-6 flex items-center">
                 <div className="glass-card w-full p-6 pointer-events-auto">
                   <h3 className="text-2xl sm:text-3xl font-bold text-white">{items[index].title}</h3>
