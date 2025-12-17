@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import InteractiveCursor from "../components/InteractiveCursor";
 import SocialLinks from "../components/SocialLinks";
 import PortfolioSideRail from "../components/PortfolioSideRail";
+import { useI18n } from "../lib/i18n";
 
 // Komponen efek idle (declare at top-level to avoid creating component during render)
 const IdleEffect = () => (
@@ -100,6 +101,7 @@ function useSectionParallax(sectionId: string, bgId: string) {
 
 
 export default function LandingPage() {
+  const { t } = useI18n();
   // Parallax mouse untuk setiap section
   useSectionParallax('home', 'home-bg');
   useSectionParallax('about', 'about-bg');
@@ -165,16 +167,16 @@ export default function LandingPage() {
                   <Image src="/profile.jpeg" alt="Profile" className="object-cover" width={192} height={192} priority />
                 </div>
                 <div className="hidden md:block"><SocialLinks /></div>
-                <div className="mt-2 md:mt-6 text-gray-400 max-w-sm"><p>Hi, I'm <span className="text-white font-semibold">Pradipta Rahmatan Isya Hertanto</span>. I design and build simple, beautiful websites focused on clarity and performance.</p></div>
+                <div className="mt-2 md:mt-6 text-gray-400 max-w-sm"><p>Hi, I'm <span className="text-white font-semibold">{t.home.name}</span>. {t.home.welcome}</p></div>
               </motion.div>
               <motion.div custom={1} variants={contentVariants} className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
                 <div className="mx-auto md:mx-0">
-                  <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">Welcome to Pradipta's Portfolio</h1>
-                  <p className="mt-3 text-lg text-gray-400 max-w-lg">I design focused interfaces that are fast, accessible, and memorable.</p>
+                  <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">{t.home.titleFull}</h1>
+                  <p className="mt-3 text-lg text-gray-400 max-w-lg">{t.home.welcome}</p>
                 </div>
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <AnimatedLink href="#portfolio" aria-label="See portfolio" className="px-6 py-3 rounded-full bg-white text-black font-medium shadow-lg" onClick={e => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}>See Portfolio</AnimatedLink>
-                  <AnimatedLink href="#contact" aria-label="Get in touch" className="px-6 py-3 rounded-full border border-gray-700 text-white hover:bg-white hover:text-black transition" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Get in Touch</AnimatedLink>
+                  <AnimatedLink href="#portfolio" aria-label="See portfolio" className="px-6 py-3 rounded-full bg-white text-black font-medium shadow-lg" onClick={e => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.home.cta.portfolio}</AnimatedLink>
+                  <AnimatedLink href="#contact" aria-label="Get in touch" className="px-6 py-3 rounded-full border border-gray-700 text-white hover:bg-white hover:text-black transition" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.home.cta.contact}</AnimatedLink>
                 </div>
                 <div className="mt-6 md:hidden"><SocialLinks /></div>
               </motion.div>
@@ -198,16 +200,16 @@ export default function LandingPage() {
         <AnimatedContainer>
           <motion.div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-24" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <motion.div custom={1} variants={contentVariants} className="text-left">
-              <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-              <p className="text-gray-400 mb-6">I'm <span className="font-semibold text-white">Pradipta Rahmatan Isya Hertanto</span>, As a Frontend Developer, I orchestrate pixels and logic to build seamless user interfaces. When I’m not crafting clean code or optimizing performance, I’m on stage shredding the guitar with my band. I bring the same passion and precision to my development work as I do to a live performance."</p>
+              <h2 className="text-4xl font-bold text-white mb-4">{t.aboutSection.title}</h2>
+              <p className="text-gray-400 mb-6">{t.aboutSection.desc}</p>
             </motion.div>
             <motion.div custom={2} variants={contentVariants} className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-              <h3 className="text-white font-semibold mb-3">Quick Highlights</h3>
-              <p className="text-gray-400 mb-4">Available for freelance and collaboration. Interested in clean UI, good performance, and meaningful interactions.</p>
+              <h3 className="text-white font-semibold mb-3">{t.aboutSection.highlightsTitle}</h3>
+              <p className="text-gray-400 mb-4">{t.aboutSection.highlightsDesc}</p>
               <div className="flex gap-3 flex-wrap">
-                <span className="px-3 py-1 rounded bg-zinc-800 text-gray-200 text-sm">Open to work</span>
-                <span className="px-3 py-1 rounded bg-zinc-800 text-gray-200 text-sm">Remote</span>
-                <span className="px-3 py-1 rounded bg-zinc-800 text-gray-200 text-sm">React / Next</span>
+                {t.aboutSection.badges.map((b: string) => (
+                  <span key={b} className="px-3 py-1 rounded bg-zinc-800 text-gray-200 text-sm">{b}</span>
+                ))}
               </div>
             </motion.div>
           </motion.div>
@@ -233,32 +235,27 @@ export default function LandingPage() {
             animate="visible"
             variants={contentVariants}
           >
-            <motion.h1 custom={1} variants={contentVariants} className="text-4xl font-bold mb-8 text-white tracking-tight">Education & Experience</motion.h1>
+            <motion.h1 custom={1} variants={contentVariants} className="text-4xl font-bold mb-8 text-white tracking-tight">{t.experience.title}</motion.h1>
             <motion.div custom={2} variants={contentVariants} className="flex gap-4 mb-8 justify-center">
               <AnimatedButton
                 className={`px-7 py-2 rounded-full border border-gray-700 bg-zinc-900 text-white font-medium shadow-md transition-all duration-200 ${selectedTab === 'education' ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}`}
                 onClick={() => setSelectedTab('education')}
                 type="button"
               >
-                Education
+                {t.experience.tabs.education}
               </AnimatedButton>
               <AnimatedButton
                 className={`px-7 py-2 rounded-full border border-gray-700 bg-zinc-900 text-white font-medium shadow-md transition-all duration-200 ${selectedTab === 'work' ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}`}
                 onClick={() => setSelectedTab('work')}
                 type="button"
               >
-                Work / Intern Experience
+                {t.experience.tabs.work}
               </AnimatedButton>
             </motion.div>
             {selectedTab === 'education' && (
               <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[
-                    { id: 'ub', title: 'University of Brawijaya', date: 'Associate Degree • 2023 - 2026 (Expected)', img: '/logos/logo-ub.png', desc: 'Information Technology (D3 Program). Focused on software development, web technologies, system design, and practical project-based learning.' },
-                    { id: 'smk', title: 'SMKN 2 Probolinggo', date: 'Vocational High School • 2021 - 2023', img: '/logos/logo-smk.png', desc: 'Majored in Computer & Network Engineering. Completed practical projects in network configuration and basic server setup, participated in workshops.' },
-                    { id: 'smp', title: 'SMPN 2 Probolinggo', date: 'Junior High School • 2017 - 2020', img: '/logos/logo-smp.png', desc: 'Completed general junior high school education with a standard academic curriculum.' },
-                    { id: 'sd', title: 'SDN Kebonsari Kulon 3 Probolinggo', date: 'Elementary School • 2011 - 2017', img: '/logos/logo-sd.png', desc: 'Completed primary education with a standard elementary school curriculum.' }
-                  ].map((e, i) => (
+                  {t.experience.educationList.map((e: any, i: number) => (
                     <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4">
                       <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
                       <div>
@@ -274,10 +271,7 @@ export default function LandingPage() {
             {selectedTab === 'work' && (
               <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[
-                    { id: 'paiton', title: 'PT. Paiton Operation & Maintenance Indonesia', date: 'Intern Web Developer • Jul 2025 - Dec 2025', img: '/logos/logo-paiton.png', desc: 'Developed a stock opname application using FlutterFlow, Supabase, and SQLite, built landing pages with React.js, and enhanced the company website through custom WordPress themes and PHP plugins within the ITSM System Management team.' },
-                    { id: 'diskominfo', title: 'Dinas Komunikasi dan Informatika (Diskominfo) Probolinggo City', date: 'IT Technician Intern • Jan 2022 - May 2022', img: '/logos/logo-diskominfo.png', desc: 'Handled hardware and network maintenance, troubleshooting, and technical support for government offices across Probolinggo City, ensuring stable IT infrastructure and daily operational continuity.' }
-                  ].map((e, i) => (
+                  {t.experience.workList.map((e: any, i: number) => (
                     <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4">
                       <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
                       <div>
@@ -298,26 +292,10 @@ export default function LandingPage() {
       <section id="what" className="min-h-[40vh] flex items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden">
         <AnimatedContainer>
           <motion.main className="w-full max-w-6xl mx-auto py-16" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
-            <h2 className="text-3xl font-bold text-white text-center mb-4">What am I doing?</h2>
-            <p className="text-gray-400 text-center mb-8">A few of the roles I focus on when building products.</p>
+            <h2 className="text-3xl font-bold text-white text-center mb-4">{t.what.title}</h2>
+            <p className="text-gray-400 text-center mb-8">{t.what.desc}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[{
-                title: 'UI/UX Designer',
-                desc: 'Design intuitive interfaces, wireframes and prototypes.',
-                tools: ['Figma', 'Sketch', 'Prototyping']
-              },{
-                title: 'Frontend Developer',
-                desc: 'Implement responsive, accessible UIs with React.',
-                tools: ['React', 'Next.js', 'Tailwind']
-              },{
-                title: 'Web Developer',
-                desc: 'Build full-featured websites with best practices.',
-                tools: ['HTML', 'CSS', 'Accessibility']
-              },{
-                title: 'Backend Developer',
-                desc: 'Design APIs, databases, and server-side logic.',
-                tools: ['Node.js', 'SQL', 'APIs']
-              }].map((r, i) => (
+              {t.what.roles.map((r: any, i: number) => (
                 <motion.div key={r.title} custom={i} variants={cardVariants} initial="hidden" whileInView="visible" whileHover={{ scale: 1.03 }} viewport={{ once: true, amount: 0.4 }} className="role-card glass-card p-6 text-center">
                   <div className="role-icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="text-white"><circle cx="12" cy="12" r="9" /></svg>
@@ -336,8 +314,8 @@ export default function LandingPage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg" style={{ backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <AnimatedContainer>
           <motion.main className="w-full max-w-4xl mx-auto py-20 text-center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
-            <h2 className="text-3xl font-bold text-white mb-6">Skills</h2>
-            <p className="text-gray-400 mb-8">A selection of core skills I use to build products.</p>
+            <h2 className="text-3xl font-bold text-white mb-6">{t.skills.title}</h2>
+            <p className="text-gray-400 mb-8">{t.skills.desc}</p>
             <div className="flex flex-wrap justify-center gap-3">
               {[
                 { name: 'HTML', level: 3 },
@@ -367,8 +345,8 @@ export default function LandingPage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg" style={{ backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <AnimatedContainer>
           <motion.main className="w-full max-w-6xl mx-auto py-24 text-center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
-            <h2 className="text-3xl font-bold text-white mb-6">Portfolio</h2>
-            <p className="text-gray-400 mb-8">Selected projects and case studies. Click <span className="text-white">View</span> to read a brief overview.</p>
+            <h2 className="text-3xl font-bold text-white mb-6">{t.portfolio.title}</h2>
+            <p className="text-gray-400 mb-8">{t.portfolio.note}</p>
             <div className="w-full">
               {/* Side rail + Thumbnails presentation */}
               <PortfolioSideRail />
@@ -386,20 +364,20 @@ export default function LandingPage() {
           <motion.div className="w-full max-w-3xl mx-auto py-28" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <div className="glass-card p-8 flex flex-col md:flex-row items-center gap-6 md:gap-12">
               <div className="flex-1 text-center md:text-left">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">Let's build something great</h2>
-                <p className="text-gray-400 mt-2 max-w-md">Prefer quick messages? Find me on social media below — or send a short email. I reply to meaningful messages.</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-white">{t.contact.title}</h2>
+                <p className="text-gray-400 mt-2 max-w-md">{t.contact.desc}</p>
                 <div className="mt-6 hidden md:block">
-                  <AnimatedLink href="mailto:email@domain.com" className="px-5 py-2 rounded-full bg-white text-black font-medium shadow">Send Email</AnimatedLink>
+                  <AnimatedLink href={`mailto:${t.contact.email}`} className="px-5 py-2 rounded-full bg-white text-black font-medium shadow">{t.contact.sendEmail}</AnimatedLink>
                 </div>
               </div>
               <div className="flex flex-col items-center">
                 <div className="flex gap-4 bg-zinc-900 p-4 rounded-full shadow-inner">
                   <SocialLinks size="lg" />
                 </div>
-                <div className="mt-3 text-sm text-gray-400">Or email: <a href="mailto:diptabeldoz40@gmail.com" className="text-white underline">diptabeldoz40@gmail.com</a></div>
+                <div className="mt-3 text-sm text-gray-400">Or email: <a href={`mailto:${t.contact.email}`} className="text-white underline">{t.contact.email}</a></div>
               </div>
             </div>
-            <div className="mt-8 text-center text-xs text-gray-500">I prioritize privacy — I won't share your contact details.</div>
+            <div className="mt-8 text-center text-xs text-gray-500">{t.contact.privacy}</div>
           </motion.div>
         </AnimatedContainer>
       </section>
