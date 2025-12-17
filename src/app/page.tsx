@@ -9,6 +9,7 @@ import InteractiveCursor from "../components/InteractiveCursor";
 import SocialLinks from "../components/SocialLinks";
 import PortfolioSideRail from "../components/PortfolioSideRail";
 import { useI18n } from "../lib/i18n";
+import ExpModal from "../components/ExpModal";
 
 // Komponen efek idle (declare at top-level to avoid creating component during render)
 const IdleEffect = () => (
@@ -102,6 +103,7 @@ function useSectionParallax(sectionId: string, bgId: string) {
 
 export default function LandingPage() {
   const { t } = useI18n() as any;
+  const [selectedExp, setSelectedExp] = useState<{ type: 'education' | 'work'; item: any } | null>(null);
   // Parallax mouse untuk setiap section
   useSectionParallax('home', 'home-bg');
   useSectionParallax('about', 'about-bg');
@@ -256,12 +258,12 @@ export default function LandingPage() {
               <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {t.experience.educationList.map((e: any, i: number) => (
-                    <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4">
+                    <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4 cursor-pointer hover:scale-[1.01] transition" onClick={() => setSelectedExp({ type: 'education', item: e })} role="button" tabIndex={0} onKeyDown={(ev) => { if (ev.key === 'Enter' || ev.key === ' ') setSelectedExp({ type: 'education', item: e }); }}>
                       <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
                       <div>
                         <div className="text-white font-semibold">{e.title}</div>
                         <div className="text-xs text-gray-400">{e.date}</div>
-                        <div className="exp-detail text-gray-400 text-sm mt-2">{e.desc}</div>
+                        <div className="exp-detail text-gray-400 text-sm mt-2 line-clamp-3">{e.desc}</div>
                       </div>
                     </motion.div>
                   ))}
@@ -272,14 +274,14 @@ export default function LandingPage() {
               <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {t.experience.workList.map((e: any, i: number) => (
-                    <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4">
-                      <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
-                      <div>
-                        <div className="text-white font-semibold">{e.title}</div>
-                        <div className="text-xs text-gray-400">{e.date}</div>
-                        <div className="exp-detail text-gray-400 text-sm mt-2">{e.desc}</div>
-                      </div>
-                    </motion.div>
+                      <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4 cursor-pointer hover:scale-[1.01] transition" onClick={() => setSelectedExp({ type: 'work', item: e })} role="button" tabIndex={0} onKeyDown={(ev) => { if (ev.key === 'Enter' || ev.key === ' ') setSelectedExp({ type: 'work', item: e }); }}>
+                        <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
+                        <div>
+                          <div className="text-white font-semibold">{e.title}</div>
+                          <div className="text-xs text-gray-400">{e.date}</div>
+                          <div className="exp-detail text-gray-400 text-sm mt-2 line-clamp-3">{e.desc}</div>
+                        </div>
+                      </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -287,6 +289,9 @@ export default function LandingPage() {
           </motion.main>
         </AnimatedContainer>
       </section>
+      {selectedExp && (
+        <ExpModal item={selectedExp.item} onClose={() => setSelectedExp(null)} />
+      )}
 
       {/* What am I doing? Section */}
       <section id="what" className="min-h-[40vh] flex items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden">
