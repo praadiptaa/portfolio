@@ -123,6 +123,14 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   if (!translations[locale]) {
     console.warn(`I18n: missing translations for locale ${locale}, falling back to 'en'`);
   }
+
+  // Diagnostics: list top-level keys present for this locale
+  useEffect(() => {
+    try {
+      const keys = Object.keys(t || {});
+      console.log('I18n: active locale keys ->', keys);
+    } catch (e) {}
+  }, [locale]);
   return (
     <I18nContext.Provider value={{ locale, setLocale, t }}>
       {children}

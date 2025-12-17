@@ -10,6 +10,7 @@ import { SmoothScrollScript } from "../components/SmoothScrollScript";
 import Footer from "../components/Footer";
 import LanguageFab from "../components/LanguageFab";
 import MusicFab from "../components/MusicFab";
+import ClientErrorBoundary from "../components/ClientErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Navbar />
             </header>
             <main className="flex-1 flex flex-col items-center justify-center w-full">
-              {children}
+              <ClientErrorBoundary>
+                {children}
+              </ClientErrorBoundary>
             </main>
             <LanguageFab />
             <MusicFab />
