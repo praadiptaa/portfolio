@@ -101,7 +101,7 @@ function useSectionParallax(sectionId: string, bgId: string) {
 
 
 export default function LandingPage() {
-  const { t } = useI18n();
+  const { t } = useI18n() as any;
   // Parallax mouse untuk setiap section
   useSectionParallax('home', 'home-bg');
   useSectionParallax('about', 'about-bg');
@@ -171,12 +171,12 @@ export default function LandingPage() {
               </motion.div>
               <motion.div custom={1} variants={contentVariants} className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
                 <div className="mx-auto md:mx-0">
-                  <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">{t.home.titleFull}</h1>
+                  <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">{(t.home as any).titleFull}</h1>
                   <p className="mt-3 text-lg text-gray-400 max-w-lg">{t.home.welcome}</p>
                 </div>
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <AnimatedLink href="#portfolio" aria-label="See portfolio" className="px-6 py-3 rounded-full bg-white text-black font-medium shadow-lg" onClick={e => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.home.cta.portfolio}</AnimatedLink>
-                  <AnimatedLink href="#contact" aria-label="Get in touch" className="px-6 py-3 rounded-full border border-gray-700 text-white hover:bg-white hover:text-black transition" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.home.cta.contact}</AnimatedLink>
+                  <AnimatedLink href="#portfolio" aria-label="See portfolio" className="px-6 py-3 rounded-full bg-white text-black font-medium shadow-lg" onClick={e => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}>{(t.home as any).cta.portfolio}</AnimatedLink>
+                  <AnimatedLink href="#contact" aria-label="Get in touch" className="px-6 py-3 rounded-full border border-gray-700 text-white hover:bg-white hover:text-black transition" onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>{(t.home as any).cta.contact}</AnimatedLink>
                 </div>
                 <div className="mt-6 md:hidden"><SocialLinks /></div>
               </motion.div>
@@ -199,15 +199,15 @@ export default function LandingPage() {
         {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
           <motion.div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-24" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
-            <motion.div custom={1} variants={contentVariants} className="text-left">
-              <h2 className="text-4xl font-bold text-white mb-4">{t.aboutSection.title}</h2>
-              <p className="text-gray-400 mb-6">{t.aboutSection.desc}</p>
+              <motion.div custom={1} variants={contentVariants} className="text-left">
+              <h2 className="text-4xl font-bold text-white mb-4">{t.about.title}</h2>
+              <p className="text-gray-400 mb-6">{t.about.desc}</p>
             </motion.div>
             <motion.div custom={2} variants={contentVariants} className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
-              <h3 className="text-white font-semibold mb-3">{t.aboutSection.highlightsTitle}</h3>
-              <p className="text-gray-400 mb-4">{t.aboutSection.highlightsDesc}</p>
+              <h3 className="text-white font-semibold mb-3">{(t as any).aboutSection.highlightsTitle}</h3>
+              <p className="text-gray-400 mb-4">{(t as any).aboutSection.highlightsDesc}</p>
               <div className="flex gap-3 flex-wrap">
-                {t.aboutSection.badges.map((b: string) => (
+                {(t as any).aboutSection.badges.map((b: string) => (
                   <span key={b} className="px-3 py-1 rounded bg-zinc-800 text-gray-200 text-sm">{b}</span>
                 ))}
               </div>

@@ -94,7 +94,7 @@ const translations: Record<Locale, any> = {
 const I18nContext = createContext<{
   locale: Locale;
   setLocale: (l: Locale) => void;
-  t: typeof translations["en"];
+  t: any;
 }>({ locale: "en", setLocale: () => {}, t: translations.en });
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {

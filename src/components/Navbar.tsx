@@ -14,7 +14,7 @@ export default function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const { t } = useI18n();
+  const { t } = useI18n() as any;
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4">
