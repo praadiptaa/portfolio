@@ -119,16 +119,32 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     console.log('I18n: locale changed ->', locale);
   }, [locale]);
 
-  const t = translations[locale] ?? translations['en'];
+  // Ensure any missing nested keys in the selected locale fall back to English defaults
+  function deepMerge(base: any, override: any) {
+    if (!override || typeof override !== 'object') return base;
+    const out: any = Array.isArray(base) ? base.slice() : { ...base };
+    for (const k of Object.keys(override)) {
+      const v = override[k];
+      if (v && typeof v === 'object' && !Array.isArray(v) && base && typeof base[k] === 'object') {
+        out[k] = deepMerge(base[k], v);
+      } else {
+        out[k] = v;
+      }
+    }
+    return out;
+  }
+
   if (!translations[locale]) {
     console.warn(`I18n: missing translations for locale ${locale}, falling back to 'en'`);
   }
 
-  // Diagnostics: list top-level keys present for this locale
+  const t = deepMerge(translations['en'], translations[locale] ?? {});
+
+  // Diagnostics: list top-level keys present for this locale (merged)
   useEffect(() => {
     try {
       const keys = Object.keys(t || {});
-      console.log('I18n: active locale keys ->', keys);
+      console.log('I18n: active locale keys (merged) ->', keys);
     } catch (e) {}
   }, [locale]);
   return (
