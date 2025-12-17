@@ -235,9 +235,30 @@ body {
 /* Experience enhanced cards */
 .exp-card { transition: transform 220ms cubic-bezier(.25,.8,.25,1), box-shadow 220ms ease; border-radius: 10px; }
 .exp-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(2,6,23,0.6); }
-.company-logo { width:36px; height:36px; border-radius:8px; background: rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; color:rgba(255,255,255,0.95); }
-.exp-detail { max-height: 0; overflow: hidden; transition: max-height 280ms ease, opacity 220ms ease; opacity: 0; }
-.exp-card:hover .exp-detail { max-height: 240px; opacity: 1; }
+.company-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.03);
+}
+.company-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Experience detail collapse/expand for accordion */
+.exp-detail { max-height: 0; overflow: hidden; transition: max-height 320ms cubic-bezier(.2,.9,.2,1), opacity 240ms ease; opacity: 0; padding-top: 0; }
+.exp-card:hover .exp-detail { /* preserve hover behavior on non-touch */ }
+
+/* Accordion states */
+.exp-card[role="button"] { cursor: pointer; }
+.exp-card.collapsed .exp-detail { max-height: 0 !important; opacity: 0 !important; padding-top: 0 !important; }
+.exp-card.expanded .exp-detail { max-height: 800px !important; opacity: 1 !important; padding-top: 0.5rem !important; }
+
+/* Also make the card focusable for keyboard users */
+.exp-card[role="button"]:focus { outline: 3px solid rgba(122,100,255,0.14); outline-offset: 3px; }
 
 /* Make experience details visible on small/touch devices (no hover) */
 @media (max-width: 768px) {
@@ -371,6 +392,76 @@ body {
   .info-left { order: 1; }
   .info-center { order: 2; }
   .info-right { order: 3; display:flex; justify-content:flex-end; gap:8px; }
+}
+
+/* Timeline — Alternating Split (desktop) → Stacked Alternating (mobile)
+   Goal: editorial left/right rhythm on large screens, constrained alternating
+   alignment on small screens to preserve that rhythm without overlap. */
+
+/* Container sizing for both desktop and mobile */
+.experience-ol { max-width: 900px; margin: 0 auto; position: relative; }
+
+/* Base card appearance */
+.exp-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.035);
+  padding: 16px 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.48);
+  color: rgba(255,255,255,0.92);
+}
+.exp-card h3 { font-size: 1.03rem; margin-bottom: 6px; }
+.exp-card p { color: rgba(255,255,255,0.74); line-height: 1.6; }
+
+/* Marker styling (line + circle) */
+.timeline-marker {
+  display:flex; align-items:center; justify-content:center; flex-direction:column;
+}
+.timeline-marker::after { display: none; }
+
+/* Vertical center line */
+.experience-ol::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 8px; bottom: 8px;
+  width: 2px; transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06));
+  z-index: 8;
+}
+
+/* Mobile: stacked alternating using a 3-column grid per item */
+@media (max-width: 768px) {
+  .experience-ol { padding: 0 12px; }
+  .experience-ol li { display: grid; grid-template-columns: 1fr 56px 1fr; gap: 10px; align-items: start; margin: 0.9rem 0; }
+  .experience-ol li .exp-card { max-width: calc(100% - 80px); }
+  .experience-ol li:nth-child(odd) .exp-card { grid-column: 1 / 2; justify-self: end; }
+  .experience-ol li:nth-child(even) .exp-card { grid-column: 3 / 4; justify-self: start; }
+  .experience-ol li .timeline-marker { grid-column: 2 / 3; justify-self: center; z-index: 30; margin: 6px 0; }
+  .experience-ol .exp-detail { max-height: none; opacity:1; overflow: visible; }
+  .exp-card { box-shadow: 0 6px 16px rgba(2,6,23,0.44); }
+}
+
+@media (max-width: 420px) {
+  .experience-ol { padding: 0 10px; }
+  /* On very small screens, switch to single-column so cards don't become too narrow */
+  .experience-ol li { display: block; grid-template-columns: none; position: relative; padding: 0; }
+  .experience-ol li .exp-card { max-width: 100%; padding: 12px 14px; margin: 0 auto; box-sizing: border-box; }
+  .exp-card h3 { font-size: 0.98rem; }
+  .company-logo { width: 40px; height: 40px; }
+  /* Position the marker centered between stacked items */
+  .experience-ol li .timeline-marker { position: absolute; left: 50%; transform: translateX(-50%); top: 8px; margin: 0; }
+  .experience-ol li .timeline-marker + .exp-card { margin-top: 36px; }
+  /* Prevent aggressive word breaking for readability */
+  .exp-card, .exp-card p, .exp-card .exp-detail { word-break: normal; hyphens: auto; white-space: normal; }
+}
+
+/* Desktop: alternate cards across center; use wider spacing */
+@media (min-width: 769px) {
+  .experience-ol li { display: grid; grid-template-columns: 1fr 84px 1fr; gap: 28px; margin: 2rem 0; }
+  .experience-ol li .exp-card { max-width: calc(50% - 60px); }
+  .experience-ol li:nth-child(odd) .exp-card { grid-column: 1 / 2; justify-self: end; }
+  .experience-ol li:nth-child(even) .exp-card { grid-column: 3 / 4; justify-self: start; }
+  .experience-ol li .timeline-marker { grid-column: 2 / 3; justify-self: center; }
 }
 
 /* Horizontal thumbnail row under the image */

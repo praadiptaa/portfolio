@@ -114,6 +114,10 @@ export default function LandingPage() {
   // State untuk tab Education/Work
   const [selectedTab, setSelectedTab] = useState<'education' | 'work'>("education");
 
+  // Accordion state: which item is open (null = all collapsed)
+  const [openEducation, setOpenEducation] = useState<number | null>(null);
+  const [openWork, setOpenWork] = useState<number | null>(null);
+
   // State untuk idle (tidak scroll)
   const [isIdle, setIsIdle] = useState(false);
   const idleTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -248,156 +252,42 @@ export default function LandingPage() {
             </motion.div>
             {selectedTab === 'education' && (
               <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
-                <div className="absolute left-1/2 top-0 h-full w-1 bg-zinc-700 rounded-full -translate-x-1/2" />
-                <ol className="relative z-10">
-                  {/* Enhanced Education entries (school cards with logo + details) */}
-                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={1} variants={contentVariants}>
-                    <div className="md:w-1/2 w-full md:pr-8 pr-0 md:text-right text-left">
-                      <div className="exp-card glass-card p-4 text-right">
-                        <div className="flex items-center justify-end gap-3">
-                          <div className="company-logo">
-                            <img src="/logos/logo-ub.png" alt="University of Brawijaya logo" className="w-10 h-10 rounded-full object-cover" loading="lazy" />
-                          </div>
-                          <div className="text-right">
-                            <div className="text-white font-semibold">University of Brawijaya</div>
-                            <div className="text-xs text-gray-400">Associate Degree • 2023 - 2026 (Expected)</div>
-                          </div>
-                        </div>
-                        <div className="exp-detail text-gray-400 text-sm mt-3">Information Technology (D3 Program). Focused on software development, web technologies, system design, and practical project-based learning.</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    { id: 'ub', title: 'University of Brawijaya', date: 'Associate Degree • 2023 - 2026 (Expected)', img: '/logos/logo-ub.png', desc: 'Information Technology (D3 Program). Focused on software development, web technologies, system design, and practical project-based learning.' },
+                    { id: 'smk', title: 'SMKN 2 Probolinggo', date: 'Vocational High School • 2021 - 2023', img: '/logos/logo-smk.png', desc: 'Majored in Computer & Network Engineering. Completed practical projects in network configuration and basic server setup, participated in workshops.' },
+                    { id: 'smp', title: 'SMPN 2 Probolinggo', date: 'Junior High School • 2017 - 2020', img: '/logos/logo-smp.png', desc: 'Completed general junior high school education with a standard academic curriculum.' },
+                    { id: 'sd', title: 'SDN Kebonsari Kulon 3 Probolinggo', date: 'Elementary School • 2011 - 2017', img: '/logos/logo-sd.png', desc: 'Completed primary education with a standard elementary school curriculum.' }
+                  ].map((e, i) => (
+                    <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4">
+                      <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
+                      <div>
+                        <div className="text-white font-semibold">{e.title}</div>
+                        <div className="text-xs text-gray-400">{e.date}</div>
+                        <div className="exp-detail text-gray-400 text-sm mt-2">{e.desc}</div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center my-4 md:my-0">
-                      <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
-                        <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
-                      </span>
-                      <span className="h-16 w-1 bg-zinc-700" />
-                    </div>
-                    <div className="hidden md:block md:w-1/2" />
-                  </motion.li>
-                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={2} variants={contentVariants}>
-                    <div className="hidden md:block md:w-1/2" />
-                    <div className="flex flex-col items-center my-4 md:my-0">
-                      <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
-                        <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
-                      </span>
-                      <span className="h-16 w-1 bg-zinc-700" />
-                    </div>
-                    <div className="md:w-1/2 w-full md:pl-8 pl-0 text-left">
-                      <div className="exp-card glass-card p-4">
-                        <div className="flex items-center gap-3">
-                          <div className="company-logo">
-                            <img src="/logos/logo-smk.png" alt="SMKN 2 Probolinggo logo" className="w-10 h-10 rounded-full object-cover" loading="lazy" />
-                          </div>
-                          <div>
-                            <div className="text-white font-semibold">SMKN 2 Probolinggo</div>
-                            <div className="text-xs text-gray-400">Vocational High School • 2021 - 2023</div>
-                          </div>
-                        </div>
-                        <div className="exp-detail text-gray-400 text-sm mt-3">Majored in Computer & Network Engineering. Completed practical projects in network configuration and basic server setup, participated in workshops.</div>
-                      </div>
-                    </div>
-                  </motion.li>
-                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={3} variants={contentVariants}>
-                    <div className="md:w-1/2 w-full md:pr-8 pr-0 md:text-right text-left">
-                      <div className="exp-card glass-card p-4 text-right">
-                        <div className="flex items-center justify-end gap-3">
-                          <div className="company-logo">
-                            <img src="/logos/logo-smp.png" alt="SMPN 2 Probolinggo logo" className="w-10 h-10 rounded-full object-cover" loading="lazy" />
-                          </div>
-                          <div className="text-right">
-                            <div className="text-white font-semibold">SMPN 2 Probolinggo</div>
-                            <div className="text-xs text-gray-400">Junior High School • 2017 - 2020</div>
-                          </div>
-                        </div>
-                        <div className="exp-detail text-gray-400 text-sm mt-3">Completed general junior high school education with a standard academic curriculum.</div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center my-4 md:my-0">
-                      <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
-                        <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
-                      </span>
-                      <span className="h-16 w-1 bg-zinc-700" />
-                    </div>
-                    <div className="hidden md:block md:w-1/2" />
-                  </motion.li>
-                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={4} variants={contentVariants}>
-                    <div className="hidden md:block md:w-1/2" />
-                    <div className="flex flex-col items-center my-4 md:my-0">
-                      <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
-                        <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
-                      </span>
-                      <span className="h-16 w-1 bg-zinc-700" />
-                    </div>
-                    <div className="md:w-1/2 w-full md:pl-8 pl-0 text-left">
-                      <div className="exp-card glass-card p-4">
-                        <div className="flex items-center gap-3">
-                          <div className="company-logo">
-                            <img src="/logos/logo-sd.png" alt="SDN Kebonsari Kulon 3 Probolinggo logo" className="w-10 h-10 rounded-full object-cover" loading="lazy" />
-                          </div>
-                          <div>
-                            <div className="text-white font-semibold">SDN Kebonsari Kulon 3 Probolinggo</div>
-                            <div className="text-xs text-gray-400">Elementary School • 2011 - 2017</div>
-                          </div>
-                        </div>
-                        <div className="exp-detail text-gray-400 text-sm mt-3">Completed primary education with a standard elementary school curriculum.</div>
-                      </div>
-                    </div>
-                  </motion.li>
-                </ol>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             )}
             {selectedTab === 'work' && (
               <motion.div className="relative w-full max-w-4xl mx-auto" initial="hidden" animate="visible" variants={contentVariants}>
-                <div className="absolute left-1/2 top-0 h-full w-1 bg-zinc-700 rounded-full -translate-x-1/2" />
-                <ol className="relative z-10">
-                  {/* Enhanced Work/Intern Experience (logos, role badges, hover details) */}
-                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={1} variants={contentVariants}>
-                    <div className="md:w-1/2 w-full md:pr-8 pr-0 md:text-right text-left">
-                      <div className="exp-card glass-card p-4 text-right">
-                        <div className="flex items-center justify-end gap-3">
-                          <div className="company-logo">
-                            <img src="/logos/logo-paiton.png" alt="PT. Paiton O&M logo" className="w-10 h-10 rounded-full object-cover" loading="lazy" />
-                          </div>
-                          <div className="text-right">
-                            <div className="text-white font-semibold">PT. Paiton Operation & Maintenance Indonesia</div>
-                            <div className="text-xs text-gray-400">Intern Web Developer • Jul 2025 - Dec 2025</div>
-                          </div>
-                        </div>
-                        <div className="exp-detail text-gray-400 text-sm mt-3">Developed a stock opname application using FlutterFlow, Supabase, and SQLite, built landing pages with React.js, and enhanced the company website through custom WordPress themes and PHP plugins within the ITSM System Management team.</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    { id: 'paiton', title: 'PT. Paiton Operation & Maintenance Indonesia', date: 'Intern Web Developer • Jul 2025 - Dec 2025', img: '/logos/logo-paiton.png', desc: 'Developed a stock opname application using FlutterFlow, Supabase, and SQLite, built landing pages with React.js, and enhanced the company website through custom WordPress themes and PHP plugins within the ITSM System Management team.' },
+                    { id: 'diskominfo', title: 'Dinas Komunikasi dan Informatika (Diskominfo) Probolinggo City', date: 'IT Technician Intern • Jan 2022 - May 2022', img: '/logos/logo-diskominfo.png', desc: 'Handled hardware and network maintenance, troubleshooting, and technical support for government offices across Probolinggo City, ensuring stable IT infrastructure and daily operational continuity.' }
+                  ].map((e, i) => (
+                    <motion.div key={e.id} custom={i} variants={cardVariants} className="exp-card glass-card p-4 flex items-start gap-4">
+                      <div className="company-logo"><img src={e.img} alt={`${e.title} logo`} loading="lazy" /></div>
+                      <div>
+                        <div className="text-white font-semibold">{e.title}</div>
+                        <div className="text-xs text-gray-400">{e.date}</div>
+                        <div className="exp-detail text-gray-400 text-sm mt-2">{e.desc}</div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center my-4 md:my-0">
-                      <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
-                        <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
-                      </span>
-                      <span className="h-16 w-1 bg-zinc-700" />
-                    </div>
-                    <div className="hidden md:block md:w-1/2" />
-                  </motion.li>
-                  <motion.li className="mb-16 flex flex-col md:flex-row items-center w-full" custom={2} variants={contentVariants}>
-                    <div className="hidden md:block md:w-1/2" />
-                    <div className="flex flex-col items-center my-4 md:my-0">
-                      <span className="w-6 h-6 flex items-center justify-center bg-zinc-900 border-2 border-white rounded-full shadow-lg z-10">
-                        <span className="w-2.5 h-2.5 bg-white rounded-full block"></span>
-                      </span>
-                      <span className="h-16 w-1 bg-zinc-700" />
-                    </div>
-                    <div className="md:w-1/2 w-full md:pl-8 pl-0 text-left">
-                      <div className="exp-card glass-card p-4">
-                        <div className="flex items-center gap-3">
-                          <div className="company-logo">
-                            <img src="/logos/logo-diskominfo.png" alt="Dinas Komunikasi dan Informatika (Diskominfo) logo" className="w-10 h-10 rounded-full object-cover" loading="lazy" />
-                          </div>
-                          <div>
-                            <div className="text-white font-semibold">Dinas Komunikasi dan Informatika (Diskominfo) Probolinggo City</div>
-                            <div className="text-xs text-gray-400">IT Technician Intern • Jan 2022 - May 2022</div>
-                          </div>
-                        </div>
-                        <div className="exp-detail text-gray-400 text-sm mt-3">Handled hardware and network maintenance, troubleshooting, and technical support for government offices across Probolinggo City, ensuring stable IT infrastructure and daily operational continuity.</div>
-                      </div>
-                    </div>
-                  </motion.li>
-                </ol>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             )}
           </motion.main>
