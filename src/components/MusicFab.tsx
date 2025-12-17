@@ -78,6 +78,10 @@ export default function MusicFab() {
                 height="80"
                 frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                onLoad={() => console.log('MusicFab: spotify iframe loaded')}
+                ref={(el) => {
+                  if (el) console.log('MusicFab: iframe element present (may or may not load due to CSP)');
+                }}
               />
             </div>
           </div>

@@ -105,6 +105,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const saved = localStorage.getItem('locale');
+      console.log('I18n: mount - saved locale:', saved);
       if (saved === 'en' || saved === 'id') {
         if (saved !== locale) setLocale(saved as Locale);
       }
@@ -115,9 +116,13 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try { localStorage.setItem('locale', locale); } catch (e) {}
     try { document.documentElement.lang = locale; } catch (e) {}
+    console.log('I18n: locale changed ->', locale);
   }, [locale]);
 
-  const t = translations[locale];
+  const t = translations[locale] ?? translations['en'];
+  if (!translations[locale]) {
+    console.warn(`I18n: missing translations for locale ${locale}, falling back to 'en'`);
+  }
   return (
     <I18nContext.Provider value={{ locale, setLocale, t }}>
       {children}

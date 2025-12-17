@@ -14,7 +14,10 @@ export default function LanguageFab() {
       <button
         aria-label="Switch language"
         title={locale === 'en' ? 'Switch to Indonesian' : 'Switch to English'}
-        onClick={() => setLocale(locale === 'en' ? 'id' : 'en')}
+        onClick={() => {
+          console.log('LanguageFab: toggle locale from', locale);
+          setLocale(locale === 'en' ? 'id' : 'en');
+        }}
         className="w-12 h-12 rounded-full border border-zinc-800 bg-zinc-900 text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform overflow-hidden"
       >
         {!useEmoji ? (
