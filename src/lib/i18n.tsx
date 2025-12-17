@@ -16,7 +16,7 @@ const translations: Record<Locale, any> = {
       contact: "Contact",
       cta: { portfolio: "See Portfolio", contact: "Get in Touch" }
     },
-    about: { title: "About Me", desc: "Hi! I'm [Your Name], a web developer focused on minimalist design and premium user experience. I love building modern websites with a monochrome aesthetic." },
+    about: { title: "About Me", desc: "Hi! I'm Pradipta Rahmatan Isya Hertanto, a web developer focused on minimalist design and premium user experience. I love building modern websites with a monochrome aesthetic." },
     aboutSection: {
       title: "About Me",
       desc: "As a Frontend Developer, I orchestrate pixels and logic to build seamless user interfaces. When I’m not crafting clean code or optimizing performance, I’m on stage shredding the guitar with my band.",

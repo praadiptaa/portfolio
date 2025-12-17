@@ -28,7 +28,7 @@ export default function LayoutContent({ children }: { children: React.ReactNode 
         <AnimatedContainer>{children}</AnimatedContainer>
       </main>
       <footer className="w-full text-center py-6 text-gray-500 text-sm border-t border-gray-800/20 mt-8">
-        &copy; {new Date().getFullYear()} [Your Name]. {t.footer}
+        &copy; {new Date().getFullYear()} {t.home.name}. {t.footer}
       </footer>
     </>
   );

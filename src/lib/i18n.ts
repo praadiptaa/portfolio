@@ -4,9 +4,9 @@ import { createContext, useContext } from "react";
 export type Locale = "en" | "id";
 
 const translations = {
-	en: {
-		home: {
-			name: "[Your Name]",
+		en: {
+			home: {
+				name: "Pradipta Rahmatan Isya Hertanto",
 			subtitle: "Web Developer | Minimalist & Premium Portfolio",
 			welcome: "Welcome to my portfolio. I build modern websites with minimalist, premium, and monochrome design.",
 			about: "About",
@@ -15,7 +15,7 @@ const translations = {
 		},
 		about: {
 			title: "About Me",
-			desc: "Hi! I'm [Your Name], a web developer focused on minimalist design and premium user experience. I love building modern websites with a monochrome aesthetic."
+			desc: "Hi! I'm Pradipta Rahmatan Isya Hertanto, a web developer focused on minimalist design and premium user experience. I love building modern websites with a monochrome aesthetic."
 		},
 		portfolio: {
 			title: "Portfolio",
@@ -42,9 +42,9 @@ const translations = {
 		},
 		footer: "All rights reserved."
 	},
-	id: {
+		id: {
 		home: {
-			name: "[Nama Anda]",
+				name: "Pradipta Rahmatan Isya Hertanto",
 			subtitle: "Web Developer | Portofolio Minimalis & Premium",
 			welcome: "Selamat datang di portofolio saya. Saya membangun website modern dengan desain minimalis, premium, dan nuansa monochrome.",
 			about: "Tentang",
@@ -53,7 +53,7 @@ const translations = {
 		},
 		about: {
 			title: "Tentang Saya",
-			desc: "Halo! Saya adalah [Nama Anda], seorang web developer yang fokus pada desain minimalis dan pengalaman pengguna premium. Saya suka membangun website modern dengan sentuhan estetika monochrome."
+			desc: "Halo! Saya Pradipta Rahmatan Isya Hertanto, seorang web developer yang fokus pada desain minimalis dan pengalaman pengguna premium. Saya suka membangun website modern dengan sentuhan estetika monochrome."
 		},
 		portfolio: {
 			title: "Portofolio",

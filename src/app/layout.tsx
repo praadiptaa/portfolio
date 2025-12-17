@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/profile.jpeg",
-        alt: "[Your Name]",
+        alt: "Pradipta Rahmatan Isya Hertanto",
       },
     ],
   },
