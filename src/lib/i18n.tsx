@@ -62,6 +62,7 @@ const translations: Record<Locale, any> = {
       contact: "Kontak",
       cta: { portfolio: "Lihat Portofolio", contact: "Hubungi" }
     },
+    about: { title: "Tentang Saya", desc: "Halo! Saya Pradipta Rahmatan Isya Hertanto, seorang Frontend Developer yang berfokus pada desain minimalis dan pengalaman pengguna premium. Saya suka membangun situs modern dengan estetika monokrom." },
     aboutSection: { title: "Tentang Saya", desc: "Sebagai Frontend Developer, saya menyusun piksel dan logika untuk membangun antarmuka pengguna yang mulus. Di luar pengkodean, saya bermain gitar di band.", highlightsTitle: "Sorotan Cepat", highlightsDesc: "Tersedia untuk freelance dan kolaborasi. Tertarik pada UI bersih, performa bagus, dan interaksi bermakna.", badges: ["Open to work", "Remote", "React / Next"] },
     portfolio: { title: "Portofolio", project1: "Proyek 1", project1desc: "Deskripsi singkat proyek 1.", project2: "Proyek 2", project2desc: "Deskripsi singkat proyek 2." },
     experience: {
