@@ -18,7 +18,7 @@ export default function LanguageFab() {
           console.log('LanguageFab: toggle locale from', locale);
           setLocale(locale === 'en' ? 'id' : 'en');
         }}
-        className="w-12 h-12 rounded-full border border-zinc-800 bg-zinc-900 text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform overflow-hidden"
+        className="w-12 h-12 rounded-full solid-btn text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform overflow-hidden"
       >
         {!useEmoji ? (
           <img

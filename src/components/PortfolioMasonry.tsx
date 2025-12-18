@@ -38,7 +38,7 @@ export default function PortfolioMasonry({ projects }: { projects?: Project[] })
               // eslint-disable-next-line @next/next/no-img-element
               <img src={p.image} alt={`${p.title} cover`} className="w-full h-auto object-cover block" loading="lazy" />
             ) : (
-              <div className="h-40 bg-zinc-800 flex items-center justify-center text-white/60">No preview</div>
+              <div className="h-40 solid-placeholder flex items-center justify-center text-white/60">No preview</div>
             )}
             <div className="case-badge">{p.year}</div>
           </div>
@@ -47,7 +47,7 @@ export default function PortfolioMasonry({ projects }: { projects?: Project[] })
             <div className="text-xs text-gray-400">{p.role}</div>
             <p className="text-gray-400 text-sm mt-3">{p.excerpt}</p>
             <div className="flex flex-wrap gap-2 mt-4">
-              {(p.tags || []).map(t => (<span key={t} className="px-2 py-1 text-xs rounded bg-zinc-800 text-gray-300">{t}</span>))}
+              {(p.tags || []).map(t => (<span key={t} className="px-2 py-1 text-xs rounded tag-pill">{t}</span>))}
             </div>
           </div>
         </motion.article>

@@ -11,6 +11,7 @@ import Footer from "../components/Footer";
 import LanguageFab from "../components/LanguageFab";
 import MusicFab from "../components/MusicFab";
 import ClientErrorBoundary from "../components/ClientErrorBoundary";
+import Background3D from "../components/Background3D";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,15 +46,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-transparent text-foreground`}>
         <a href="#home" className="skip-link sr-only focus:not-sr-only focus:translate-y-0 focus:top-4">Skip to content</a>
         <I18nProvider>
           <MotionProvider>
             <SmoothScrollScript />
-            <header className="w-full flex justify-center border-b border-gray-800/20 mb-8 sticky top-0 z-50 bg-background/80 backdrop-blur">
+            <header className="w-full flex justify-center border-b border-gray-800/20 mb-8 sticky top-0 z-50 bg-transparent backdrop-blur">
               <Navbar />
             </header>
-            <main className="flex-1 flex flex-col items-center justify-center w-full">
+            <Background3D />
+            <main className="flex-1 flex flex-col items-center justify-center w-full relative z-10">
               <ClientErrorBoundary>
                 {children}
               </ClientErrorBoundary>

@@ -71,7 +71,7 @@ export default function PortfolioGrid({ projects }: { projects?: Project[] }) {
           className="glass-card overflow-hidden relative group"
           aria-labelledby={`project-${p.id}-title`}
         >
-          <div className="h-44 bg-zinc-800 overflow-hidden">
+          <div className="h-44 solid-placeholder overflow-hidden">
             {p.image ? (
               <img src={p.image} alt={`${p.title} cover`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             ) : (
@@ -89,7 +89,7 @@ export default function PortfolioGrid({ projects }: { projects?: Project[] }) {
             <p className="text-gray-400 text-sm mt-3">{p.excerpt}</p>
             <div className="flex flex-wrap gap-2 mt-4">
               {(p.tags || []).map(t => (
-                <span key={t} className="px-2 py-1 text-xs rounded bg-zinc-800 text-gray-300">{t}</span>
+                <span key={t} className="px-2 py-1 text-xs rounded tag-pill">{t}</span>
               ))}
             </div>
             <div className="mt-4 flex items-center gap-3">

@@ -43,7 +43,7 @@ export default function CaseModal({ project, open, onClose }: { project?: Projec
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0 }}
             transition={motionEnabled ? { duration: 0.32 } : { duration: 0 }}
-            className="relative z-10 max-w-4xl w-full mx-4 bg-zinc-900 rounded-lg overflow-hidden shadow-xl"
+            className="relative z-10 max-w-4xl w-full mx-4 solid-panel rounded-lg overflow-hidden shadow-xl"
           >
             <div className="p-6 md:p-8">
               <div className="flex items-start justify-between gap-4">
@@ -55,7 +55,7 @@ export default function CaseModal({ project, open, onClose }: { project?: Projec
               </div>
 
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-zinc-800 rounded overflow-hidden relative h-64">
+                <div className="solid-placeholder rounded overflow-hidden relative h-64">
                   {project.image ? (
                     <Image src={project.image} alt={project.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                   ) : (

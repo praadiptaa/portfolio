@@ -149,23 +149,18 @@ export default function LandingPage() {
 
 
   return (
-    <div className="w-full font-sans bg-background text-foreground">
+    <div className="w-full font-sans bg-transparent text-foreground">
       <InteractiveCursor />
       {/* Home Section */}
       <section
         id="home"
         className="min-h-screen flex flex-col items-center px-4 scroll-mt-24 relative overflow-hidden pb-0 section-hover-effect"
       >
-        <div
-          id="home-bg"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-zinc-900 to-zinc-800 bg-local md:bg-fixed parallax-bg"
-          style={{ backgroundSize: "cover", backgroundPosition: "center" }}
-        />
         {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
             <motion.div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-24" initial="hidden" animate="visible" variants={contentVariants}>
               <motion.div custom={0} variants={contentVariants} className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
-                <div className="w-36 h-36 md:w-48 md:h-48 rounded-full bg-zinc-900 border border-zinc-700 shadow-lg overflow-hidden flex items-center justify-center">
+                <div className="w-36 h-36 md:w-48 md:h-48 rounded-full company-avatar overflow-hidden flex items-center justify-center">
                   <Image src="/profile.jpeg" alt="Profile" className="object-cover" width={192} height={192} priority />
                 </div>
                 <div className="hidden md:block"><SocialLinks /></div>
@@ -192,12 +187,7 @@ export default function LandingPage() {
       </section>
 
       {/* About Section (two-column) */}
-      <section id="about" className="min-h-[70vh] flex items-center px-6 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden section-hover-effect">
-        <div
-          id="about-bg"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-local md:bg-fixed parallax-bg"
-          style={{ backgroundSize: "cover", backgroundPosition: "center" }}
-        />
+      <section id="about" className="min-h-[70vh] flex items-center px-6 scroll-mt-24 relative overflow-hidden section-hover-effect">
         {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
           <motion.div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-24" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
@@ -205,12 +195,12 @@ export default function LandingPage() {
               <h2 className="text-4xl font-bold text-white mb-4">{t.about.title}</h2>
               <p className="text-gray-400 mb-6">{t.about.desc}</p>
             </motion.div>
-            <motion.div custom={2} variants={contentVariants} className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+            <motion.div custom={2} variants={contentVariants} className="solid-panel rounded-lg p-6">
               <h3 className="text-white font-semibold mb-3">{(t as any).aboutSection.highlightsTitle}</h3>
               <p className="text-gray-400 mb-4">{(t as any).aboutSection.highlightsDesc}</p>
               <div className="flex gap-3 flex-wrap">
                 {(t as any).aboutSection.badges.map((b: string) => (
-                  <span key={b} className="px-3 py-1 rounded bg-zinc-800 text-gray-200 text-sm">{b}</span>
+                  <span key={b} className="px-3 py-1 rounded tag-pill">{b}</span>
                 ))}
               </div>
             </motion.div>
@@ -222,12 +212,7 @@ export default function LandingPage() {
 
 
       {/* Experience Section - Alternating Timeline */}
-      <section id="experience" className="min-h-screen flex flex-col items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden section-hover-effect">
-        <div
-          id="experience-bg"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-local md:bg-fixed parallax-bg"
-          style={{ backgroundSize: "cover", backgroundPosition: "center" }}
-        />
+      <section id="experience" className="min-h-screen flex flex-col items-center justify-center px-4 scroll-mt-24 relative overflow-hidden section-hover-effect">
         <span className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-white/0 via-white/40 to-white/0 rounded-full" />
         {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
@@ -240,14 +225,14 @@ export default function LandingPage() {
             <motion.h1 custom={1} variants={contentVariants} className="text-4xl font-bold mb-8 text-white tracking-tight">{t.experience.title}</motion.h1>
             <motion.div custom={2} variants={contentVariants} className="flex gap-4 mb-8 justify-center">
               <AnimatedButton
-                className={`px-7 py-2 rounded-full border border-gray-700 bg-zinc-900 text-white font-medium shadow-md transition-all duration-200 ${selectedTab === 'education' ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}`}
+                className={`px-7 py-2 rounded-full border border-gray-700 solid-btn text-white font-medium shadow-md transition-all duration-200 ${selectedTab === 'education' ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}`}
                 onClick={() => setSelectedTab('education')}
                 type="button"
               >
                 {t.experience.tabs.education}
               </AnimatedButton>
               <AnimatedButton
-                className={`px-7 py-2 rounded-full border border-gray-700 bg-zinc-900 text-white font-medium shadow-md transition-all duration-200 ${selectedTab === 'work' ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}`}
+                className={`px-7 py-2 rounded-full border border-gray-700 solid-btn text-white font-medium shadow-md transition-all duration-200 ${selectedTab === 'work' ? 'bg-white text-black' : 'hover:bg-white hover:text-black'}`}
                 onClick={() => setSelectedTab('work')}
                 type="button"
               >
@@ -294,7 +279,7 @@ export default function LandingPage() {
       )}
 
       {/* What am I doing? Section */}
-      <section id="what" className="min-h-[40vh] flex items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden">
+      <section id="what" className="min-h-[40vh] flex items-center justify-center px-4 scroll-mt-24 relative overflow-hidden">
         <AnimatedContainer>
           <motion.main className="w-full max-w-6xl mx-auto py-16" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <h2 className="text-3xl font-bold text-white text-center mb-4">{t.what.title}</h2>
@@ -315,8 +300,7 @@ export default function LandingPage() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="min-h-[60vh] flex flex-col items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden section-hover-effect">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg" style={{ backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <section id="skills" className="min-h-[60vh] flex flex-col items-center justify-center px-4 scroll-mt-24 relative overflow-hidden section-hover-effect">
         <AnimatedContainer>
           <motion.main className="w-full max-w-4xl mx-auto py-20 text-center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <h2 className="text-3xl font-bold text-white mb-6">{t.skills.title}</h2>
@@ -346,8 +330,7 @@ export default function LandingPage() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="min-h-screen flex flex-col items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden section-hover-effect">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg" style={{ backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <section id="portfolio" className="min-h-screen flex flex-col items-center justify-center px-4 scroll-mt-24 relative overflow-hidden section-hover-effect">
         <AnimatedContainer>
           <motion.main className="w-full max-w-6xl mx-auto py-24 text-center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>
             <h2 className="text-3xl font-bold text-white mb-6">{t.portfolio.title}</h2>
@@ -362,8 +345,7 @@ export default function LandingPage() {
 
 
       {/* Contact Section (premium icon-only layout) */}
-      <section id="contact" className="min-h-screen flex items-center justify-center px-4 scroll-mt-24 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden">
-        <div id="contact-bg" className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 bg-fixed parallax-bg" style={{ backgroundSize: "cover", backgroundPosition: "center" }} />
+      <section id="contact" className="min-h-screen flex items-center justify-center px-4 scroll-mt-24 relative overflow-hidden">
         {isIdle && <div className="hidden md:block"><IdleEffect /></div>}
         <AnimatedContainer>
           <motion.div className="w-full max-w-3xl mx-auto py-28" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.6 }} variants={contentVariants}>

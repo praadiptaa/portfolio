@@ -57,7 +57,7 @@ export default function PortfolioCarousel({ slides }: { slides?: Slide[] }) {
                     <Image src={items[index].image} alt={items[index].title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" />
                   </div>
                 ) : (
-                  <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-white/60">No image</div>
+                  <div className="w-full h-full solid-placeholder flex items-center justify-center text-white/60">No image</div>
                 )}
                 <div className="case-overlay" />
               </div>

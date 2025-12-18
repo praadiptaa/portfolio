@@ -56,14 +56,14 @@ export default function MusicFab() {
             aria-label="Toggle Spotify player"
             title={open ? "Close player" : "Open Spotify player"}
             onClick={() => setOpen(v => !v)}
-            className="w-12 h-12 rounded-full border border-zinc-800 bg-zinc-900 text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+            className="w-12 h-12 rounded-full solid-btn text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
           >
             <span className="text-sm">♫</span>
           </button>
         </div>
 
         {open && (
-          <div className="fixed bottom-20 right-6 z-50 w-80 md:w-[360px] bg-zinc-900 border border-zinc-800 rounded-lg shadow-lg overflow-hidden">
+          <div className="fixed bottom-20 right-6 z-50 w-80 md:w-[360px] solid-panel rounded-lg shadow-lg overflow-hidden">
             <div className="flex items-center justify-between p-2 border-b border-zinc-800">
               <div className="text-sm text-white font-medium">Spotify Player</div>
               <div className="flex items-center gap-2">
@@ -97,7 +97,7 @@ export default function MusicFab() {
         aria-label="Play favorite song"
         title={playing ? "Pause song" : "Play favorite song"}
         onClick={toggleLocal}
-        className="w-12 h-12 rounded-full border border-zinc-800 bg-zinc-900 text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+        className="w-12 h-12 rounded-full solid-btn text-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
       >
         {loaded ? (
           <span className="text-lg">{playing ? "⏸" : "▶"}</span>

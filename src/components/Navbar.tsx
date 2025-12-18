@@ -45,7 +45,7 @@ export default function Navbar() {
 
         {/* Mobile menu panel */}
         {open && (
-          <div className="absolute left-0 right-0 top-full bg-background/95 backdrop-blur-md border-t border-zinc-800 md:hidden z-40">
+          <div className="absolute left-0 right-0 top-full bg-transparent backdrop-blur-md border-t border-zinc-800 md:hidden z-40">
             <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3">
               <a href="#home" onClick={e => handleNavClick('home', e)} className="px-3 py-2 rounded-md hover:bg-zinc-900/50">{t.nav.home}</a>
               <a href="#about" onClick={e => handleNavClick('about', e)} className="px-3 py-2 rounded-md hover:bg-zinc-900/50">{t.nav.about}</a>

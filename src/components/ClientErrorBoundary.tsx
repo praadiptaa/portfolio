@@ -20,11 +20,11 @@ export default class ClientErrorBoundary extends React.Component<React.PropsWith
   render() {
     if (this.state.hasError) {
       return (
-        <div className="w-full min-h-screen flex items-center justify-center bg-background text-foreground">
+        <div className="w-full min-h-screen flex items-center justify-center bg-transparent text-foreground">
           <div className="max-w-md text-center p-6">
             <h2 className="text-xl font-bold mb-3">Application error</h2>
             <p className="mb-3 text-sm">A client-side exception occurred. Check the console for details.</p>
-            <pre className="text-xs text-left bg-zinc-900 p-3 rounded text-red-400">{String(this.state.error)}</pre>
+            <pre className="text-xs text-left solid-panel p-3 rounded text-red-400">{String(this.state.error)}</pre>
           </div>
         </div>
       );

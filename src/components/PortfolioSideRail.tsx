@@ -71,7 +71,7 @@ export default function PortfolioSideRail({ projects }: { projects?: Project[] }
                           <Image src={items[index].image} alt={items[index].title} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw" priority={true} />
                         </div>
                   ) : (
-                    <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-white/60">No image</div>
+                    <div className="w-full h-full solid-placeholder flex items-center justify-center text-white/60">No image</div>
                   )}
               <div className="case-overlay" />
             </motion.div>
@@ -110,7 +110,7 @@ export default function PortfolioSideRail({ projects }: { projects?: Project[] }
                   {it.image ? (
                     <Image src={it.image} alt={it.title} fill className="object-cover" sizes="(max-width: 640px) 120px, 160px" />
                   ) : (
-                    <div className="w-full h-full bg-zinc-800 flex items-center justify-center text-white/60">No image</div>
+                    <div className="w-full h-full solid-placeholder flex items-center justify-center text-white/60">No image</div>
                   )}
                 </motion.div>
             </button>
